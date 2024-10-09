@@ -23,6 +23,89 @@ const Icon = ({ className, paths, viewBox = "0 0 32 32", width, height }) => {
 const SideBar = ({ isExpanded, setIsExpanded }) => {
   const [activeTab, setActiveTab] = useState("chats");
 
+  const chats = [
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Cosmic Evolution",
+      time: "9:34 PM",
+      message:
+        "Some 15 billion years ago the universe emerged from a hot, dense sea of...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+    {
+      iconPath:
+        "M8.39359 0.786457C8.0186 0.789551 7.64671 1.16763 6.90293 1.9238C5.41536 3.43612 4.41952 3.94436 2.41958 3.96086C0.419653 3.97737 3.94429 6.94838 3.94429 6.94838L1.00359 10.9375L0.968685 10.9724L0.988778 10.9576L0.977428 10.973L1.00418 10.9463L4.99331 8.00555C4.99331 8.00555 7.96432 11.5302 7.98082 9.53026C7.99733 7.53033 8.50556 6.53449 10.0179 5.04692C10.7741 4.30313 11.1521 3.93124 11.1552 3.55625C11.1583 3.18127 10.7864 2.80318 10.0426 2.04702L9.97303 1.9774L9.97711 1.97332L9.90282 1.89904C9.14666 1.15525 8.76858 0.783362 8.39359 0.786457Z", // Complete path here
+      chatTitle: "Star Formation",
+      time: "8:15 PM",
+      message:
+        "The process by which dense regions within molecular clouds in interstellar space collapse and form stars...",
+    },
+  ];
+
   const tabs = [
     {
       name: "chats",
@@ -56,7 +139,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
     <section
       className={`${
         isExpanded ? "translate-x-0" : "-translate-x-full"
-      } transition-transform duration-300 ease-in-out px-2 w-72 relative`}
+      } transition-transform duration-300 ease-in-out w-[22rem] px-2 relative`}
     >
       <div
         className="absolute bg-primary-500 hover:bg-primary-600 transition duration-300 p-2 rounded-full right-0 top-1/2 translate-x-1/2 cursor-pointer"
@@ -68,7 +151,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
           <IoIosArrowForward className="text-xl text-primary-50" />
         )}
       </div>
-      <div className="py-2 flex justify-between items-center">
+      <div className={`py-2 flex justify-between items-center `}>
         <h2 className="font-medium text-xl tracking-tighter">My Chats</h2>
         <div className="flex gap-2">
           <Icon
@@ -161,6 +244,21 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
         ))}
       </div>
       <SearchBox />
+      <div
+        className="flex flex-col gap-2 overflow-y-scroll scrollable"
+        style={{ height: "calc(100vh - 230px)" }}
+      >
+        {chats.map((chat, index) => (
+          <Chats
+            key={index}
+            iconPath={chat.iconPath}
+            chatTitle={chat.chatTitle}
+            time={chat.time}
+            message={chat.message}
+            truncate={true} // Enable truncation for all chats
+          />
+        ))}
+      </div>
     </section>
   );
 };
@@ -230,4 +328,51 @@ const SearchBox = () => {
   );
 };
 
+const Chats = ({
+  iconPath,
+  chatTitle,
+  time,
+  message,
+  iconColor = "#FEC553", // Default icon color
+  truncate = false, // Option to truncate long messages
+}) => {
+  return (
+    <div className="w-full flex items-baseline gap-2 bg-primary-300/20 dark:bg-secondary-950 p-2 rounded-lg">
+      <div>
+        <svg
+          width="12"
+          height="11"
+          viewBox="0 0 12 11"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d={iconPath}
+            fill={iconColor}
+          />
+        </svg>
+      </div>
+
+      <div className="w-full">
+        <div className="flex justify-between items-center mb-1">
+          <h3 className="font-semibold text-lg">{chatTitle}</h3>
+          <p className="font-light text-sm">{time}</p>
+        </div>
+        <div
+          className={`text-sm ${truncate ? "line-clamp-2" : ""}`}
+          style={{
+            overflow: truncate ? "hidden" : "visible",
+            display: truncate ? "-webkit-box" : "block",
+            WebkitBoxOrient: truncate ? "vertical" : "unset",
+            WebkitLineClamp: truncate ? 2 : "unset",
+          }}
+        >
+          {message}
+        </div>
+      </div>
+    </div>
+  );
+};
 export default SideBar;

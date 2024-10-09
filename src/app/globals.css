@@ -3,3 +3,12 @@
 @tailwind utilities;
 
 
+/* Hide scrollbar for webkit browsers */
+.scrollable::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+  }
+  
+  /* Hide scrollbar for Firefox */
+  .scrollable {
+    scrollbar-width: none; /* For Firefox */
+  }

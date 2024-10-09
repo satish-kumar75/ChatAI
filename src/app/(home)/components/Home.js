@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div
       className={`grid transition-all duration-300 ease-in-out ${
-        isExpanded ? "grid-cols-[18rem_1fr]" : "grid-cols-[0_1fr]"
+        isExpanded ? "grid-cols-[22rem_1fr]" : "grid-cols-[0_1fr]"
       } w-full h-screen`}
     >
       <SideBar isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
