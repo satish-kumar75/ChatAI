@@ -2,7 +2,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { Providers } from "@/context/ThemeProvider";
-import ThemeSwitch from "@/components/ThemeSwitch";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,7 +29,6 @@ export default function RootLayout({ children }) {
             suppressHydrationWarning
             class="bg-secondary-50/10 dark:bg-secondary-900"
           >
-            <ThemeSwitch />
             {children}
           </body>
         </AuthProvider>

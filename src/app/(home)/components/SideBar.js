@@ -1,7 +1,10 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import UserAvatar from "../../images/UserAvatar.png";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 const Icon = ({ className, paths, viewBox = "0 0 32 32", width, height }) => {
   return (
@@ -22,6 +25,7 @@ const Icon = ({ className, paths, viewBox = "0 0 32 32", width, height }) => {
 
 const SideBar = ({ isExpanded, setIsExpanded }) => {
   const [activeTab, setActiveTab] = useState("chats");
+  const [activeChat, setActiveChat] = useState(null);
 
   const chats = [
     {
@@ -142,7 +146,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
       } transition-transform duration-300 ease-in-out w-[22rem] px-2 relative`}
     >
       <div
-        className="absolute bg-primary-500 hover:bg-primary-600 transition duration-300 p-2 rounded-full right-0 top-1/2 translate-x-1/2 cursor-pointer"
+        className="absolute z-30 bg-primary-500 hover:bg-primary-600 animation p-[5px] rounded-full right-0 top-1/2 translate-x-1/2 cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         {isExpanded ? (
@@ -155,7 +159,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
         <h2 className="font-medium text-xl tracking-tighter">My Chats</h2>
         <div className="flex gap-2">
           <Icon
-            className="fill-primary-500 hover:fill-primary-600 cursor-pointer transition duration-300"
+            className="fill-primary-500 hover:fill-primary-600 cursor-pointer animation"
             width={32}
             height={32}
             paths={[
@@ -181,7 +185,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
             ]}
           />
           <Icon
-            className="fill-secondary-300 hover:fill-secondary-400 dark:fill-secondary-700 dark:hover:fill-secondary-800  cursor-pointer transition duration-300"
+            className="fill-secondary-300 hover:fill-secondary-400 dark:fill-secondary-700 dark:hover:fill-secondary-800  cursor-pointer animation"
             width={32}
             height={32}
             paths={[
@@ -212,7 +216,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
         {tabs.map((tab) => (
           <p
             key={tab.name}
-            className={`flex w-1/2 p-1 rounded-lg gap-2 items-center justify-center font-bold text-xs cursor-pointer transition-colors duration-300 ease-in-out  ${
+            className={`flex w-1/2 p-1 rounded-lg gap-2 items-center justify-center font-bold text-xs cursor-pointer animation  ${
               activeTab === tab.name
                 ? "dark:bg-secondary-950 bg-secondary-50 text-primary-400 shadow-[0_16px_6px_-2px_rgb(0_0_0_/_13%),_0_8px_10px_-6px_rgb(137_134_134)]"
                 : "dark:bg-secondary-600 bg-secondary-200 dark:text-secondary-50 text-secondary-950 dark:hover:bg-secondary-900 hover:bg-secondary-100"
@@ -220,7 +224,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
             onClick={() => setActiveTab(tab.name)}
           >
             <Icon
-              className={`transition-colors duration-300 ${
+              className={` ${
                 activeTab === tab.name
                   ? "fill-primary-400"
                   : "dark:fill-secondary-50 fill-secondary-950"
@@ -232,7 +236,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
             />
             {tab.label}
             <span
-              className={`p-1 rounded-md transition-colors duration-300 ${
+              className={`p-1 rounded-md  ${
                 activeTab === tab.name
                   ? "dark:bg-primary-500/20 bg-primary-500/10"
                   : "dark:bg-secondary-400 bg-secondary-50"
@@ -244,10 +248,7 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
         ))}
       </div>
       <SearchBox />
-      <div
-        className="flex flex-col gap-2 overflow-y-scroll scrollable"
-        style={{ height: "calc(100vh - 230px)" }}
-      >
+      <div className="relative flex flex-col gap-2 rounded-lg overflow-y-scroll scrollable h-[calc(100vh-230px)] ">
         {chats.map((chat, index) => (
           <Chats
             key={index}
@@ -255,9 +256,21 @@ const SideBar = ({ isExpanded, setIsExpanded }) => {
             chatTitle={chat.chatTitle}
             time={chat.time}
             message={chat.message}
-            truncate={true} // Enable truncation for all chats
+            truncate={true}
+            isActive={index === activeChat}
+            onClick={() => {
+              setActiveChat(index);
+            }}
           />
         ))}
+      </div>
+
+      <div className="mt-2 flex items-center justify-between">
+        <div className="flex items-center gap-2 bg-secondary-300/20 hover:bg-secondary-100  dark:bg-secondary-800 px-3 py-2 rounded-lg dark:hover:bg-secondary-950 animation cursor-pointer ">
+          <Image src={UserAvatar} height={30} width={30} />
+          <p>Saurabh Kumar</p>
+        </div>
+        <ThemeSwitch />
       </div>
     </section>
   );
@@ -306,7 +319,7 @@ const SearchBox = () => {
       </div>
       <Icon
         className={
-          "dark:fill-secondary-950 dark:hover:fill-black fill-secondary-200 hover:fill-secondary-300 transition duration-300 cursor-pointer"
+          "dark:fill-secondary-950 dark:hover:fill-black fill-secondary-200 hover:fill-secondary-300 animation cursor-pointer"
         }
         width="32"
         height="32"
@@ -333,11 +346,18 @@ const Chats = ({
   chatTitle,
   time,
   message,
-  iconColor = "#FEC553", // Default icon color
-  truncate = false, // Option to truncate long messages
+  iconColor = "#FEC553",
+  truncate = false,
+  isActive,
+  onClick,
 }) => {
   return (
-    <div className="w-full flex items-baseline gap-2 bg-primary-300/20 dark:bg-secondary-950 p-2 rounded-lg">
+    <div
+      className={`w-full flex items-baseline gap-2 p-2 rounded-lg cursor-pointer hover:bg-primary-300/20 dark:hover:bg-secondary-950 animation ${
+        isActive ? " bg-primary-300/20 dark:bg-secondary-950" : ""
+      }`}
+      onClick={onClick}
+    >
       <div>
         <svg
           width="12"
@@ -375,4 +395,5 @@ const Chats = ({
     </div>
   );
 };
+
 export default SideBar;

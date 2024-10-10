@@ -3,12 +3,32 @@
 @tailwind utilities;
 
 
-/* Hide scrollbar for webkit browsers */
+
 .scrollable::-webkit-scrollbar {
-    display: none; /* Hide scrollbar */
-  }
-  
-  /* Hide scrollbar for Firefox */
-  .scrollable {
-    scrollbar-width: none; /* For Firefox */
-  }
+  width: 8px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #646c76;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background: #555c65;
+}
+
+.light .scrollable::-webkit-scrollbar-thumb {
+  background: #cdd1d4;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.animation {
+  transition: background-color 0.3s ease-in-out;
+  transition: fill 0.3s ease-in-out;
+}
